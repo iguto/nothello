@@ -1,5 +1,3 @@
-require './type_converter'
-
 class Panel
   module TYPE
     BLACK = :black
