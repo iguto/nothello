@@ -31,4 +31,19 @@ describe Position do
       it { expect(Position.parse "(f,3)").not_to eq(Position.new(3, 3)) }
     end
   end
+
+  describe "up"
+  describe "down"
+  describe "right"
+  describe "left"
+
+  describe "==" do
+    context "一致になるケース" do
+      it { expect(Position.new(1, 2)).to eq(Position.new(1, 2)) }
+    end
+    context "不一致になるケース" do
+      it { expect(Position.new(5, 2)).not_to eq(Position.new(1, 2)) }
+      it { expect(Position.new(1, 4)).not_to eq(Position.new(1, 2)) }
+    end
+  end
 end
