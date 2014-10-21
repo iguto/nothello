@@ -9,14 +9,8 @@ class Position
     x_str = str.scan(/[a-zA-Z]/).first.downcase
     x = ('a'..'z').to_a.index(x_str)
     y = str.scan(/\d/).first.to_i
-    pos = self.new(x, y)
-    pos.adjust
-  end
-
-  def adjust
-    # raise "out of range" if @y == 0
-    @y -= 1
-    self
+    y = adjust(y)
+    self.new(x, y)
   end
 
   def up
@@ -38,5 +32,15 @@ class Position
   def left
     @x -= 1
     self
+  end
+
+  def == other
+    self.x == other.x && self.y == other.y
+  end
+
+  private
+
+  def self.adjust(y)
+    y - 1
   end
 end
