@@ -32,10 +32,29 @@ describe Position do
     end
   end
 
-  describe "up"
-  describe "down"
-  describe "right"
-  describe "left"
+
+  let(:pos) { Position.new(1, 2) }
+
+  describe "up" do
+    context "盤面の中の移動" do
+      it { expect(pos.up).to eq(Position.new(1, 1)) }
+    end
+  end
+  describe "down" do
+    context "盤面の中の移動" do
+      it { expect(pos.down).to eq(Position.new(1, 3)) }
+    end
+  end
+  describe "right" do
+    context "盤面の中の移動" do
+      it { expect(pos.right).to eq(Position.new(2, 2)) }
+    end
+  end
+  describe "left" do
+    context "盤面の中の移動" do
+      it { expect(pos.left).to eq(Position.new(0, 2)) }
+    end
+  end
 
   describe "==" do
     context "一致になるケース" do
