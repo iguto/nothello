@@ -1,4 +1,5 @@
 class Panel
+  # TODO: typeのクラス化(reverseはtypeがもつ)
   module TYPE
     BLACK = :black
     WHITE = :white
@@ -8,6 +9,7 @@ class Panel
   attr_reader :type
 
   def initialize(pos, type)
+    # TODO: posは最終的に不要になるはずなので取り除く
     @pos = pos
     @type = type
   end
