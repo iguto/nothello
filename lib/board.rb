@@ -32,6 +32,8 @@ class Board
     false
   end
 
+  private
+
   def reversible_dir?(pos, type, dir)
     reversible_count = 0
     opposite_type = (type == Panel::TYPE::WHITE) ? Panel::TYPE::BLACK : Panel::TYPE::WHITE
@@ -50,8 +52,6 @@ class Board
     end
     false
   end
-
-  private
 
   def create_empty_panels
     @panels = Array.new(SIZE) { Array.new(SIZE) }
