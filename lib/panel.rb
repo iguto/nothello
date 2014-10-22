@@ -6,7 +6,7 @@ class Panel
     EMPTY = :empty
   end
 
-  attr_reader :type
+  attr_reader :type, :pos
 
   def initialize(pos, type)
     # TODO: posは最終的に不要になるはずなので取り除く
@@ -28,5 +28,9 @@ class Panel
 
   def empty?
     @type == TYPE::EMPTY
+  end
+
+  def == other
+    self.type == other.type && self.pos == other.pos
   end
 end
