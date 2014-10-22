@@ -1,11 +1,14 @@
 require 'forwardable'
 
-require './panel'
-require './board_printer'
-require './board'
-require './position'
-require './interfaces'
-require './player'
+dir = File.dirname(__FILE__)
+
+require File.realpath('panel.rb', dir)
+require File.realpath('board_printer.rb', dir)
+require File.realpath('type_converter.rb', dir)
+require File.realpath('board.rb', dir)
+require File.realpath('position.rb', dir)
+require File.realpath('interfaces.rb', dir)
+require File.realpath('player.rb', dir)
 
 class Othello
   def initialize
