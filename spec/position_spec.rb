@@ -32,27 +32,45 @@ describe Position do
     end
   end
 
-
   let(:pos) { Position.new(1, 2) }
-
   describe "up" do
     context "盤面の中の移動" do
       it { expect(pos.up).to eq(Position.new(1, 1)) }
+    end
+
+    context "盤面外へ出てしまう移動" do
+      let(:pos) { Position.new(1, 0) }
+      it { expect(pos.up).to be nil }
     end
   end
   describe "down" do
     context "盤面の中の移動" do
       it { expect(pos.down).to eq(Position.new(1, 3)) }
     end
+
+    context "盤面外へ出てしまう移動" do
+      let(:pos) { Position.new(1, Board::SIZE-1) }
+      it { expect(pos.down).to be nil }
+    end
   end
   describe "right" do
     context "盤面の中の移動" do
       it { expect(pos.right).to eq(Position.new(2, 2)) }
     end
+
+    context "盤面外へ出てしまう移動" do
+      let(:pos) { Position.new(Board::SIZE-1, 1) }
+      it { expect(pos.right).to be nil }
+    end
   end
   describe "left" do
     context "盤面の中の移動" do
       it { expect(pos.left).to eq(Position.new(0, 2)) }
+    end
+
+    context "盤面外へ出てしまう移動" do
+      let(:pos) { Position.new(0, 1) }
+      it { expect(pos.left).to be nil }
     end
   end
 

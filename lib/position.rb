@@ -14,22 +14,25 @@ class Position
   end
 
   def up
-    # raise "out of range" if @x == 0
+    return nil if @y <= 0
     @y -= 1
     self
   end
 
   def down
     @y += 1
+    return nil if @y >= Board::SIZE
     self
   end
 
   def right
     @x += 1
+    return nil if @x >= Board::SIZE
     self
   end
 
   def left
+    return nil if @x <= 0
     @x -= 1
     self
   end
