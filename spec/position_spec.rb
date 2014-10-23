@@ -74,6 +74,59 @@ describe Position do
     end
   end
 
+  describe "#right_up" do
+    context "盤面内の移動" do
+      it { expect(pos.right_up).to eq(Position.new(2, 1)) }
+    end
+    context "盤面外へ出てしまう移動(上方向)" do
+      let(:pos) { Position.new(2, 0) }
+      it { expect(pos.right_up).to eq nil }
+    end
+    context "盤面外へ出てしまう移動(右方向)" do
+      let(:pos) { Position.new(Board::SIZE-1, 2) }
+      it { expect(pos.right_up).to eq nil }
+    end
+  end
+  describe "#left_up" do
+    context "盤面内の移動" do
+      it { expect(pos.left_up).to eq(Position.new(0, 1)) }
+    end
+    context "盤面外へ出てしまう移動(上方向)" do
+      let(:pos) { Position.new(2, 0) }
+      it { expect(pos.left_up).to eq nil }
+    end
+    context "盤面外へ出てしまう移動(左方向)" do
+      let(:pos) { Position.new(0, 2) }
+      it { expect(pos.left_up).to eq nil }
+    end
+  end
+  describe "#right_down" do
+    context "盤面内の移動" do
+      it { expect(pos.right_down).to eq(Position.new(2, 3)) }
+    end
+    context "盤面外へ出てしまう移動(下方向)" do
+      let(:pos) { Position.new(2, Board::SIZE-1) }
+      it { expect(pos.right_down).to eq nil }
+    end
+    context "盤面外へ出てしまう移動(右方向)" do
+      let(:pos) { Position.new(Board::SIZE-1, 2) }
+      it { expect(pos.right_down).to eq nil }
+    end
+  end
+  describe "#left_down" do
+    context "盤面内の移動" do
+      it { expect(pos.left_down).to eq(Position.new(0, 3)) }
+    end
+    context "盤面外へ出てしまう移動(下方向)" do
+      let(:pos) { Position.new(2, Board::SIZE-1) }
+      it { expect(pos.left_down).to eq nil }
+    end
+    context "盤面外へ出てしまう移動(左方向)" do
+      let(:pos) { Position.new(0, 2) }
+      it { expect(pos.left_down).to eq nil }
+    end
+  end
+
   describe "==" do
     context "一致になるケース" do
       it { expect(Position.new(1, 2)).to eq(Position.new(1, 2)) }

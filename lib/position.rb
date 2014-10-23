@@ -37,6 +37,26 @@ class Position
     self
   end
 
+  def right_up
+    return nil if up.nil?
+    right
+  end
+
+  def left_up
+    return nil if up.nil?
+    left
+  end
+
+  def right_down
+    return nil if down.nil?
+    right
+  end
+
+  def left_down
+    return nil if down.nil?
+    left
+  end
+
   def == other
     self.x == other.x && self.y == other.y
   end
