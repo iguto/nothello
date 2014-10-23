@@ -90,7 +90,7 @@ end
 class OutOfBoardError < StandardError; end
 
 class PanelIterator
-  DIRECTIONS = [:up, :down, :right, :left]
+  DIRECTIONS = [:up, :down, :right, :left, :right_up, :left_up, :right_down, :left_down]
 
   attr_reader :pos
   def initialize(panels)
@@ -102,42 +102,17 @@ class PanelIterator
     @pos = pos
   end
 
-  def up
-    pos = Marshal.load(Marshal.dump(@pos)).up
-    return nil if pos.nil?
-    @pos = pos
-    panel
-  rescue OutOfBoardError => e
-    return nil
-  end
-
-  def down
-    pos = Marshal.load(Marshal.dump(@pos)).down
-    return nil if pos.nil?
-    @pos = pos
-    panel
-  rescue OutOfBoardError => e
-    return nil
-  end
-
-  def right
-    pos = Marshal.load(Marshal.dump(@pos)).right
-    return nil if pos.nil?
-    @pos = pos
-    panel
-  rescue OutOfBoardError => e
-    return nil
-  end
-
-  def left
-    pos = Marshal.load(Marshal.dump(@pos)).left
-    return nil if pos.nil?
-    @pos = pos
-    panel
-  end
-
   def panel(pos = nil)
     pos ||= @pos
     @panels[pos.y][pos.x]
+  end
+
+  def method_missing(method, *args)
+    return super unless DIRECTIONS.include? method
+
+    pos = Marshal.load(Marshal.dump(@pos)).send(method)
+    return nil if pos.nil?
+    @pos = pos
+    panel
   end
 end
