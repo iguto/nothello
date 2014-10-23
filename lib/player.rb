@@ -6,6 +6,6 @@ class Player
 
   def play_turn(board)
     pos = @interface.get_input(@type)
-    board.set_panel(pos, @type)
+    board.put_stone(pos, @type)
   end
 end

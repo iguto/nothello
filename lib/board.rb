@@ -25,6 +25,12 @@ class Board
     @panels[pos.y][pos.x]= Panel.new(pos, type)
   end
 
+  def put_stone(pos, type)
+    return nil unless reversible?(pos, type)
+    set_panel(pos, type)
+    reverse(pos, type)
+  end
+
   def reversible?(pos, type)
     PanelIterator::DIRECTIONS.each do |dir|
       return true if reversible_dir?(pos, type, dir)
@@ -32,7 +38,25 @@ class Board
     false
   end
 
+  def reverse(pos, type)
+    PanelIterator::DIRECTIONS.each do |dir|
+      reverse_dir(pos, type, dir)
+    end
+  end
+
   private
+
+  def reverse_dir(pos, type, dir)
+    return nil unless reversible_dir?(pos, type, dir)
+    iterator = PanelIterator.new(@panels)
+    iterator.set_pos(pos)
+    panel = iterator.send(dir)
+    while panel do
+      break if panel.type == type
+      set_panel(iterator.pos, iterator.panel.reverse)
+      panel = iterator.send(dir)
+    end
+  end
 
   def reversible_dir?(pos, type, dir)
     reversible_count = 0
@@ -68,6 +92,7 @@ class OutOfBoardError < StandardError; end
 class PanelIterator
   DIRECTIONS = [:up, :down, :right, :left]
 
+  attr_reader :pos
   def initialize(panels)
     @panels = panels
     @pos = Position.new(0,0)
