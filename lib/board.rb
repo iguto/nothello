@@ -79,7 +79,7 @@ class PanelIterator
 
   def up
     pos = Marshal.load(Marshal.dump(@pos)).up
-    return nil if panel(pos).nil?
+    return nil if pos.nil?
     @pos = pos
     panel
   rescue OutOfBoardError => e
@@ -88,7 +88,7 @@ class PanelIterator
 
   def down
     pos = Marshal.load(Marshal.dump(@pos)).down
-    return nil if panel(pos).nil?
+    return nil if pos.nil?
     @pos = pos
     panel
   rescue OutOfBoardError => e
@@ -97,7 +97,7 @@ class PanelIterator
 
   def right
     pos = Marshal.load(Marshal.dump(@pos)).right
-    return nil if panel(pos).nil?
+    return nil if pos.nil?
     @pos = pos
     panel
   rescue OutOfBoardError => e
@@ -106,7 +106,7 @@ class PanelIterator
 
   def left
     pos = Marshal.load(Marshal.dump(@pos)).left
-    return nil if panel(pos).nil?
+    return nil if pos.nil?
     @pos = pos
     panel
   end
