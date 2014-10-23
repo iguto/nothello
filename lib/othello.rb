@@ -15,8 +15,10 @@ class Othello
     @players = []
     @board_printer = BoardPrinter.new
     @board = Board.new
-    player = Player.new(CUI.new, :black)
-    @players.push player
+    b_player = Player.new(CUI.new, :black)
+    @players.push b_player
+    w_player = Player.new(CUI.new, :white)
+    @players.push w_player
   end
 
   # オセロを開始する
